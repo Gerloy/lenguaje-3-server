@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class detectar : MonoBehaviour
+{
+    [SerializeField] OSC osc;
+    Vector3 pos;
+    OscMessage mensaje;
+    KinectManager kmanager;
+    // Start is called before the first frame update
+    void Start()
+    {
+        kmanager = KinectManager.Instance;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(kmanager == null)
+		{
+			kmanager = KinectManager.Instance;
+            //Debug.Log("Pinga");
+		}
+        else{
+            //Debug.Log("Sdwadwa");
+            pos = kmanager.GetUserPosition(kmanager.GetPlayer1ID());
+            Debug.Log(pos);
+            mensaje = new OscMessage();
+            mensaje.address = "/pos";
+            mensaje.values.Add(pos.x*100);
+            mensaje.values.Add(pos.y);
+            mensaje.values.Add(pos.z*100);
+            osc.Send(mensaje);
+        }
+    }
+}
