@@ -27,11 +27,20 @@ public class detectar : MonoBehaviour
             pos = kmanager.GetUserPosition(kmanager.GetPlayer1ID());
             Debug.Log(pos);
             mensaje = new OscMessage();
-            mensaje.address = "/pos";
-            mensaje.values.Add(pos.x*100);
-            mensaje.values.Add(pos.y);
-            mensaje.values.Add(pos.z*100);
+            mensaje.address = "/posx";
+            //mensaje.values.Add(pos.x * 100 + 39.5);
+            mensaje.values.Add((pos.x*100)-39);
             osc.Send(mensaje);
+            //mensaje.values.Add(pos.y);
+            mensaje = new OscMessage();
+            mensaje.address = "/posz";
+            mensaje.values.Add(pos.z*100 - 80);
+            osc.Send(mensaje);
+            //mensaje = new OscMessage();
+            //mensaje.address = "/nada";
+            //mensaje.values.Add("Pinga");
+            //osc.Send(mensaje);
+
         }
     }
 }
