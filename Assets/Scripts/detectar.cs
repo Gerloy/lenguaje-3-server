@@ -8,6 +8,17 @@ public class detectar : MonoBehaviour
     Vector3 pos;
     OscMessage mensaje;
     KinectManager kmanager;
+
+    //Variables decisiones
+    KeyCode decision1 = KeyCode.Alpha1;
+    KeyCode decision2 = KeyCode.Alpha2;
+    KeyCode decision3 = KeyCode.Alpha3;
+
+
+    //Variables piedra
+    //bool presionada = false;
+    KeyCode piedra = KeyCode.UpArrow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +34,8 @@ public class detectar : MonoBehaviour
             //Debug.Log("Pinga");
 		}
         else{
-            //Debug.Log("Sdwadwa");
+            
+            //Mensajes de posicion
             pos = kmanager.GetUserPosition(kmanager.GetPlayer1ID());
             Debug.Log(pos);
             mensaje = new OscMessage();
@@ -36,11 +48,26 @@ public class detectar : MonoBehaviour
             mensaje.address = "/posz";
             mensaje.values.Add(pos.z*100 - 80);
             osc.Send(mensaje);
-            //mensaje = new OscMessage();
-            //mensaje.address = "/nada";
-            //mensaje.values.Add("Pinga");
-            //osc.Send(mensaje);
 
+            //Mensajes de inputs de decisiones
+            mensaje = new OscMessage();
+            mensaje.address = "/decision";
+            if (Input.GetKeyDown(decision1)){
+                mensaje.values.Add(1);
+            }else if (Input.GetKeyDown(decision2)){
+                mensaje.values.Add(2);
+            }else if (Input.GetKeyDown(decision3)){
+                mensaje.values.Add(3);
+            }else {
+                mensaje.values.Add(0);
+            }
+            osc.Send(mensaje);
+
+            //Mensaje de la piedra como bool
+            mensaje = new OscMessage();
+            mensaje.address = "/piedra";
+            mensaje.values.Add(Input.GetKeyDown(piedra));
+            osc.Send(mensaje);
         }
     }
 }
