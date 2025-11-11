@@ -41,12 +41,12 @@ public class detectar : MonoBehaviour
             mensaje = new OscMessage();
             mensaje.address = "/posx";
             //mensaje.values.Add(pos.x * 100 + 39.5);
-            mensaje.values.Add((pos.x*100)-39);
+            mensaje.values.Add((pos.x*35)-39);
             osc.Send(mensaje);
             //mensaje.values.Add(pos.y);
             mensaje = new OscMessage();
             mensaje.address = "/posz";
-            mensaje.values.Add(pos.z*100 - 80);
+            mensaje.values.Add(pos.z*35 - 80);
             osc.Send(mensaje);
 
             //Mensajes de inputs de decisiones
