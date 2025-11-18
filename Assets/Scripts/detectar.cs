@@ -15,7 +15,6 @@ public class detectar : MonoBehaviour
     bool decision1_press = false;
     KeyCode decision2 = KeyCode.Alpha2;
     bool decision2_press = false;
-
     KeyCode decision3 = KeyCode.Alpha8;
     bool decision3_press = false;
 
@@ -46,12 +45,12 @@ public class detectar : MonoBehaviour
         mensaje = new OscMessage();
         mensaje.address = "/posx";
         //mensaje.values.Add(pos.x * 100 + 39.5);
-        mensaje.values.Add((pos.x*35)-39);
+        mensaje.values.Add(pos.x*35 - 50);
         osc.Send(mensaje);
         //mensaje.values.Add(pos.y);
         mensaje = new OscMessage();
         mensaje.address = "/posz";
-        mensaje.values.Add(pos.z*35 - 80);
+        mensaje.values.Add(pos.z*35 - 20);//- 80);
         osc.Send(mensaje);
 
         //Mensajes de inputs de decisiones
