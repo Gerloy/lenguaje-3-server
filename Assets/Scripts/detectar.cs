@@ -11,9 +11,9 @@ public class detectar : MonoBehaviour
     KinectManager kmanager;
 
     //Variables decisiones
-    KeyCode decision1 = KeyCode.Alpha4;
+    KeyCode decision1 = KeyCode.Alpha3;
     bool decision1_press = false;
-    KeyCode decision2 = KeyCode.Alpha2;
+    KeyCode decision2 = KeyCode.Alpha4;
     bool decision2_press = false;
     KeyCode decision3 = KeyCode.Alpha8;
     bool decision3_press = false;
@@ -22,7 +22,7 @@ public class detectar : MonoBehaviour
 
     //Variables piedra
     //bool presionada = false;
-    KeyCode piedra = KeyCode.Alpha3;
+    KeyCode piedra = KeyCode.Alpha2;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class detectar : MonoBehaviour
         else{
         //Mensajes de posicion
         pos = kmanager.GetUserPosition(kmanager.GetPlayer1ID());
-        Debug.Log(pos);
+        //Debug.Log(pos);
         mensaje = new OscMessage();
         mensaje.address = "/posx";
         //mensaje.values.Add(pos.x * 100 + 39.5);
@@ -127,7 +127,7 @@ public class detectar : MonoBehaviour
         {
             mensaje.values.Add(1);
         }
-        else { mensaje.values.Add(1);}
+        else { mensaje.values.Add(0);}
         osc.Send(mensaje);
         }
     }
