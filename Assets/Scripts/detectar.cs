@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class detectar : MonoBehaviour
 {
+    [SerializeField] ScriptableIP IP;
     [SerializeField] OSC osc;
     Vector3 pos;
     OscMessage mensaje;
@@ -28,6 +29,7 @@ public class detectar : MonoBehaviour
     void Start()
     {
         kmanager = KinectManager.Instance;
+        //osc.outIP = IP.get_ip();
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class detectar : MonoBehaviour
         mensaje.address = "/posz";
         mensaje.values.Add(pos.z*35 - 20);//- 80);
         osc.Send(mensaje);
+        }
 
         //Mensajes de inputs de decisiones
         mensaje = new OscMessage();
@@ -73,7 +76,7 @@ public class detectar : MonoBehaviour
                 osc.Send(mensaje);
             }
         }
-        else if (Input.GetKey(decision2))
+        if (Input.GetKey(decision2))
         {
             if (!decision2_press)
             {
@@ -87,7 +90,7 @@ public class detectar : MonoBehaviour
                 osc.Send(mensaje);
             }
         }
-        else if (Input.GetKey(decision3))
+        if (Input.GetKey(decision3))
         {
             if (!decision3_press)
             {
@@ -129,6 +132,6 @@ public class detectar : MonoBehaviour
         }
         else { mensaje.values.Add(0);}
         osc.Send(mensaje);
-        }
     }
+    
 }
